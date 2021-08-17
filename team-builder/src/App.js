@@ -1,10 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "./axios";
+// import logo from "./logo.svg";
+import "./App.css";
+import TeamMember from "./TeamMember";
+
+// import axios from 'axios'
 
 function App() {
+  const [teamMemberList, setTeamMemberList] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("fakeai.com")
+      .then((res) => {
+        console.log(res);
+        setTeamMemberList(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("Oops! We are working on this issue, please come back later!");
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
+      {error && <h1>{error}</h1>}
+      <h1>Team Member Roster</h1>
+      {teamMemberList.map((teamMember) => {
+        return <TeamMember key={teamMember.id} details={teamMember} />;
+      })}
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +43,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

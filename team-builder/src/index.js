@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+// const teamList = [
+//   {firstName: 'Shanae', lastName: "Leslie"},
+//   {firstName: 'Norman', lastName: 'Jeune'},
+//   {firstName: 'Mason', lastName: 'Mostella'},
+// ];
+
+// function TeamForm() {
+//   const [formValues, setFormValues] = useState({firstName: '', lastName: ''});
+//   const [teamMembers, setTeamMembers]
+// }
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
