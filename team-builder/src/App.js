@@ -1,21 +1,61 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
-// import logo from "./logo.svg";
 import "./App.css";
-import TeamMember from "./TeamMember";
+import TeamMembers from "./TeamMembers";
+import MemberForm from "./MemberForm";
 
-// import axios from 'axios'
+const initialFormValues = {
+  name: "",
+  email: "",
+  role: "",
+};
 
+// const teamMemberData = [
+//   {}]
 function App() {
-  const [teamMemberList, setTeamMemberList] = useState([]);
+  const [teamMemberData, setTeamMemberData] = useState([]);
+  //could have renamed to teamMemberData
+  const [formValues, setFormValues] = useState(initialFormValues);
   const [error, setError] = useState("");
+
+  const updateForm = (inputName, inputValue) => {
+    setFormValues({ ...formValues, [inputName]: inputValue });
+  };
+
+  const submitForm = () => {
+    const newMember = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      role: formValues.role,
+      about: formValues.about,
+    };
+    if (
+      !newMember.name ||
+      !newMember.email ||
+      !newMember.role ||
+      !newMember.about
+    ) {
+      setError("All fields must be completed");
+      return;
+    }
+
+    axios
+      .post("fakeapi.com", newMember)
+      .then((res) => {
+        console.log(res);
+        setTeamMemberData([res.data, ...teamMemberData]);
+        setFormValues(initialFormValues);
+        setError("");
+      })
+      .catch((error) => console.error(error));
+  };
 
   useEffect(() => {
     axios
-      .get("fakeai.com")
+      .get("fakeapi.com")
       .then((res) => {
         console.log(res);
-        setTeamMemberList(res.data);
+        setTeamMemberData(res.data);
       })
       .catch((error) => {
         console.error(error);
@@ -26,24 +66,14 @@ function App() {
   return (
     <div className="App">
       {error && <h1>{error}</h1>}
-      <h1>Team Member Roster</h1>
-      {teamMemberList.map((teamMember) => {
+      <h1 className="Header">Team Member Roster</h1>
+      <h2>Member Form</h2>
+      <MemberForm values={formValues} update={updateForm} submit={submitForm} />
+      {/* {teamMemberData.map((teamMember) => {
         return <TeamMember key={teamMember.id} details={teamMember} />;
-      })}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      })} */}
+      <h2>Current Members</h2>
+      <TeamMembers teamMemberData={teamMemberData} />
     </div>
   );
 }
