@@ -49,21 +49,8 @@ export default {
       data: initialTeamMemberList,
     });
   },
-  post(url, { name, email, role }) {
-    const newTeamMember = { id: uuid(), name, email, role };
+  post(url, { name, email, role, about }) {
+    const newTeamMember = { id: uuid(), name, email, role, about };
     return Promise.resolve({ status: 200, success: true, data: newTeamMember });
   },
 };
-
-<div>
-  <h4>About Me</h4>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mi justo,
-    luctus id ultrices eget, condimentum vestibulum mi. Aliquam condimentum
-    ipsum ac metus efficitur mattis. Quisque vehicula libero tellus, a ornare
-    nunc faucibus in. Phasellus sed metus nec neque feugiat mollis vitae non
-    arcu. Integer at enim pellentesque, maximus eros pellentesque, rutrum arcu.
-    In aliquam facilisis arcu vulputate sodales. Donec pulvinar mattis placerat.
-    Vivamus id volutpat libero, vel ultricies tellus.
-  </p>
-</div>;

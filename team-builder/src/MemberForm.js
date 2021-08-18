@@ -44,19 +44,19 @@ export default function MemberForm(props) {
           Role
           <select value={values.role} name="role" onChange={onChange}>
             <option value="">-- Select Member Role --</option>
-            <option value="front-end">Front-End Engineer</option>
-            <option value="back-end">Back-End Engineer</option>
-            <option value="full-stack">Full-Stack Engineer</option>
-            <option value="designer">Web Designer</option>
-            <option value="mobile-developer">Mobile Developer</option>
-            <option value="game-developer">Game Developer</option>
-            <option value="data-scientist">Data Scientist</option>
-            <option value="security-developer">Security Developer</option>
-            <option value="devOps">DevOps</option>
+            <option value="Front-End Engineer">Front-End Engineer</option>
+            <option value="Back-End Engineer">Back-End Engineer</option>
+            <option value="Full-Stack Engineer">Full-Stack Engineer</option>
+            <option value="Web Designer">Web Designer</option>
+            <option value="Mobile Developer">Mobile Developer</option>
+            <option value="Game Developer">Game Developer</option>
+            <option value="Data Scientist">Data Scientist</option>
+            <option value="Security Developer">Security Developer</option>
+            <option value="DevOps">DevOps</option>
           </select>
         </label>
         <label>
-          Email
+          About
           <input
             type="text"
             name="about"

@@ -8,6 +8,7 @@ const initialFormValues = {
   name: "",
   email: "",
   role: "",
+  about: "",
 };
 
 // const teamMemberData = [
@@ -27,7 +28,7 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       role: formValues.role,
-      about: formValues.about,
+      about: formValues.about.trim(),
     };
     if (
       !newMember.name ||
@@ -67,7 +68,7 @@ function App() {
     <div className="App">
       {error && <h1>{error}</h1>}
       <h1 className="Header">Team Member Roster</h1>
-      <h2>Member Form</h2>
+      <h2>New Member Form</h2>
       <MemberForm values={formValues} update={updateForm} submit={submitForm} />
       {/* {teamMemberData.map((teamMember) => {
         return <TeamMember key={teamMember.id} details={teamMember} />;
